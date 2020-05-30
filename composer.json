@@ -1,5 +1,5 @@
 {
-    "name": "nztim/mailchimp",
+    "name": "josieboy/mailchimp",
     "description": "Mailchimp API wrapper, includes Laravel 5 support.",
     "license": "MIT",
     "authors": [
@@ -18,16 +18,16 @@
     },
     "autoload": {
         "psr-4": {
-            "NZTim\\Mailchimp\\": "src/"
+            "Josieboy\\Mailchimp\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NZTim\\Mailchimp\\MailchimpServiceProvider"
+                "Josieboy\\Mailchimp\\MailchimpServiceProvider"
             ],
             "aliases": {
-                "Mailchimp": "NZTim\\Mailchimp\\MailchimpFacade"
+                "Mailchimp": "Josieboy\\Mailchimp\\MailchimpFacade"
             }
         }
     }
