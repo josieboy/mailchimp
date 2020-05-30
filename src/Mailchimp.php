@@ -1,7 +1,7 @@
 <?php namespace Josieboy\Mailchimp;
 
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpException;
+use Josieboy\Mailchimp\Exception\MailchimpBadRequestException;
+use Josieboy\Mailchimp\Exception\MailchimpException;
 use Throwable;
 
 class Mailchimp
