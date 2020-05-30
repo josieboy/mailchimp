@@ -19,6 +19,13 @@ class Mailchimp
         $this->api = $api;
     }
 
+    public function newList($listname, $contact){
+        if (!is_string($listname)) {
+            throw new MailchimpException("List name must be a string");
+        }
+        $this->api->newList($listname, $contact);
+    }
+
     public function getLists(array $params = []): array
     {
         $results = $this->api->getLists($params);
@@ -54,12 +61,12 @@ class Mailchimp
 
     // Add a member to the list or update an existing member
     // Ensures that existing subscribers are not asked to reconfirm
-    public function subscribe(string $listId, string $email, array $mergeFields = [], bool $confirm = true)
+    public function subscribe(string $listId, string $email, array $tags, array $mergeFields = [], bool $confirm = true)
     {
         if ($this->status($listId, $email) == 'subscribed') {
             $confirm = false;
         }
-        $this->api->addUpdate($listId, $email, $mergeFields, $confirm);
+        $this->api->addUpdate($listId, $email, $tags, $mergeFields, $confirm);
     }
 
     public function addUpdateMember(string $listId, Member $member)

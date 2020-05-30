@@ -1,4 +1,6 @@
-<?php namespace NZTim\Mailchimp;
+<?php
+
+namespace NZTim\Mailchimp;
 
 use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
 use NZTim\Mailchimp\Exception\MailchimpException;
@@ -37,7 +39,24 @@ class MailchimpApi
         return $this->call('get', "/lists/{$listId}/members/{$memberId}");
     }
 
-    public function addUpdate(string $listId, string $email, array $merge, bool $confirm)
+    public function newList(string $listname, array $contact)
+    {
+        $data = [
+            'name' => $listname,
+            'contact' => $contact,
+            'email_type_option' => true,
+            'permission_reminder' => 'You signed up from Memberbase Api',
+            'campaign_defaults' => [
+                'from_name' => $contact['FNAME'] . " " . $contact['LNAME'],
+                'from_email' => $contact['EMAIL'],
+                'subject' => "Default Subject Memberbase",
+                'language' => "en",
+            ]
+        ];
+        $this->call('post', '/lists', $data);
+    }
+
+    public function addUpdate(string $listId, string $email, array $tags, array $merge, bool $confirm)
     {
         $email = strtolower($email);
         $memberId = md5($email);
@@ -45,6 +64,7 @@ class MailchimpApi
             'email_address' => $email,
             'status_if_new' => $confirm ? 'pending' : 'subscribed',
             'status'        => $confirm ? 'pending' : 'subscribed',
+            'tags' => $tags
         ];
         // Empty array doesn't work
         if ($merge) {
