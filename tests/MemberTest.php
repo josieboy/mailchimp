@@ -1,6 +1,6 @@
 <?php
 
-use NZTim\Mailchimp\Member;
+use Josieboy\Mailchimp\Member;
 use PHPUnit\Framework\TestCase;
 
 class MemberTest extends TestCase
