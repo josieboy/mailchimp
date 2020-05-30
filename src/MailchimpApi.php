@@ -1,6 +1,6 @@
 <?php
 
-namespace NZTim\Mailchimp;
+namespace Josieboy\Mailchimp;
 
 use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
 use NZTim\Mailchimp\Exception\MailchimpException;
