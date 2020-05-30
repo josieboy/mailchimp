@@ -1,4 +1,4 @@
-<?php namespace NZTim\Mailchimp;
+<?php namespace Josieboy\Mailchimp;
 
 class Member
 {
