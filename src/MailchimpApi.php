@@ -2,9 +2,9 @@
 
 namespace Josieboy\Mailchimp;
 
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpException;
-use NZTim\Mailchimp\Exception\MailchimpInternalErrorException;
+use Josieboy\Mailchimp\Exception\MailchimpBadRequestException;
+use Josieboy\Mailchimp\Exception\MailchimpException;
+use Josieboy\Mailchimp\Exception\MailchimpInternalErrorException;
 use Requests;
 use Requests_Auth_Basic;
 use Requests_Response;
