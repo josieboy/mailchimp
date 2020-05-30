@@ -1,10 +1,10 @@
 <?php
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use NZTim\Mailchimp\Exception\MailchimpBadRequestException;
-use NZTim\Mailchimp\Exception\MailchimpInternalErrorException;
-use NZTim\Mailchimp\Mailchimp;
-use NZTim\Mailchimp\MailchimpApi;
+use Josieboy\Mailchimp\Exception\MailchimpBadRequestException;
+use Josieboy\Mailchimp\Exception\MailchimpInternalErrorException;
+use Josieboy\Mailchimp\Mailchimp;
+use Josieboy\Mailchimp\MailchimpApi;
 use PHPUnit\Framework\TestCase;
 
 class MailchimpTest extends TestCase
