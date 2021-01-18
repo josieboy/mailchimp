@@ -73,15 +73,16 @@ class MailchimpApi
         $this->call('put', "/lists/{$listId}/members/{$memberId}", $data);
     }
 
-    public function addUpdateMemberTag(string $listId, string $email, array $tags){
+    public function addMemberTag(string $listId, string $email, array $tags)
+    {
         $email = strtolower($email);
         $memberId = md5($email);
-        $data = array(
-            'tags' => array(
+        $data = [
+            'tags' => [
                 $tags
-            )
-        );
-    
+            ]
+        ];
+
         $this->call('post', "/lists/{$listId}/members/{$memberId}/tags", $data);
     }
 
