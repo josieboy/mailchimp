@@ -1,4 +1,6 @@
-<?php namespace Josieboy\Mailchimp;
+<?php
+
+namespace Josieboy\Mailchimp;
 
 use Josieboy\Mailchimp\Exception\MailchimpBadRequestException;
 use Josieboy\Mailchimp\Exception\MailchimpException;
@@ -19,7 +21,8 @@ class Mailchimp
         $this->api = $api;
     }
 
-    public function newList($listname, $contact){
+    public function newList($listname, $contact)
+    {
         if (!is_string($listname)) {
             throw new MailchimpException("List name must be a string");
         }
@@ -32,8 +35,8 @@ class Mailchimp
         return $results['lists'] ?? [];
     }
 
-     // Determines the status of a subscriber
-     // Possible responses: 'subscribed', 'unsubscribed', 'cleaned', 'pending', 'transactional' or 'not found'
+    // Determines the status of a subscriber
+    // Possible responses: 'subscribed', 'unsubscribed', 'cleaned', 'pending', 'transactional' or 'not found'
     public function status(string $listId, string $email): string
     {
         $this->checkListExists($listId);
@@ -77,6 +80,11 @@ class Mailchimp
         $this->api->addUpdateMember($listId, $member);
     }
 
+    public function addTagToMember(string $listId, string $email, array $tags)
+    {
+        $this->api->addUpdateMemberTag($listId, $email, $tags);
+    }
+
     public function unsubscribe(string $listId, string $email)
     {
         if (!$this->check($listId, $email)) {
@@ -98,7 +106,7 @@ class Mailchimp
             $this->api->getList($listId);
         } catch (Throwable $e) {
             if ($this->api->responseCodeNotFound()) {
-                throw new MailchimpBadRequestException('Mailchimp API error: list id:'.$listId.' does not exist');
+                throw new MailchimpBadRequestException('Mailchimp API error: list id:' . $listId . ' does not exist');
             }
             throw $e;
         }
@@ -109,6 +117,6 @@ class Mailchimp
         if (!isset($member['status'])) {
             return false;
         }
-        return in_array($member['status'], ['subscribed', 'unsubscribed', 'cleaned', 'pending', 'transactional','archived']);
+        return in_array($member['status'], ['subscribed', 'unsubscribed', 'cleaned', 'pending', 'transactional', 'archived']);
     }
 }
