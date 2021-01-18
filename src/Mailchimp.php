@@ -82,7 +82,7 @@ class Mailchimp
 
     public function addTagToMember(string $listId, string $email, array $tags)
     {
-        $this->api->addUpdateMemberTag($listId, $email, $tags);
+        $this->api->addMemberTag($listId, $email, $tags);
     }
 
     public function unsubscribe(string $listId, string $email)
